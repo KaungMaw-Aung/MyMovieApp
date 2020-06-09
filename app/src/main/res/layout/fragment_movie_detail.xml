@@ -15,29 +15,40 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="5dp"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp"
             tools:context=".detail.MovieDetailFragment">
 
 
             <TextView
+                android:id="@+id/textView4"
+                style="@style/detailTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:text="Released Date: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_genres" />
+
+            <TextView
                 android:id="@+id/textView5"
+                style="@style/detailTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="8dp"
                 android:text="Genres:"
-                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_overview" />
 
             <ImageView
                 android:id="@+id/iv_backdrop"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="0dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="movie backdrop"
-                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="25:14"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -46,12 +57,12 @@
 
             <ImageView
                 android:id="@+id/iv_poster"
-                android:layout_width="wrap_content"
-                android:layout_height="150dp"
+                style="@style/posterImgStyle"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="movie poster"
-                android:scaleType="fitCenter"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_backdrop"
                 app:layout_constraintStart_toStartOf="@+id/iv_backdrop"
                 app:layout_constraintTop_toBottomOf="@+id/iv_backdrop"
@@ -74,24 +85,22 @@
 
             <TextView
                 android:id="@+id/textView3"
+                style="@style/detailTextTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="24dp"
                 android:text="Overview:"
-                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_poster" />
 
             <TextView
                 android:id="@+id/tv_overview"
+                style="@style/detailTextBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="5dp"
-                android:lineSpacingExtra="6sp"
-                android:textAlignment="viewStart"
-                android:textSize="18sp"
                 app:bindText="@{viewModel.detailResponse.overview}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -100,16 +109,93 @@
 
             <TextView
                 android:id="@+id/tv_genres"
+                style="@style/detailTextBody"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="5dp"
-                android:textSize="18sp"
                 app:bindGenres="@{viewModel.detailResponse.genres}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/tv_overview"
                 app:layout_constraintTop_toBottomOf="@+id/tv_overview"
                 tools:text="Action Thriller Horror" />
+
+            <TextView
+                android:id="@+id/textView6"
+                style="@style/detailTextBody"
+                bindText="@{viewModel.detailResponse.releaseDate}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4"
+                tools:text="2020-03-05" />
+
+            <TextView
+                android:id="@+id/status"
+                bindText="@{viewModel.detailResponse.status}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="#BD1414"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintStart_toEndOf="@+id/textView6"
+                app:layout_constraintTop_toTopOf="@+id/textView6"
+                tools:text="released" />
+
+            <TextView
+                android:id="@+id/textView8"
+                style="@style/detailTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:text="Duration: "
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView9"
+                style="@style/detailTextBody"
+                formatDuration="@{viewModel.detailResponse.runtime}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintStart_toEndOf="@+id/textView8"
+                app:layout_constraintTop_toTopOf="@+id/textView8"
+                tools:text="2hr 14min" />
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/detailTextTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="8dp"
+                android:text="Rating:"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/detailTextBody"
+                bindVote="@{viewModel.detailResponse.voteAverage}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/imageView3"
+                tools:text="5.8" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/textView10"
+                app:layout_constraintStart_toStartOf="@+id/textView9"
+                app:layout_constraintTop_toTopOf="@+id/textView10"
+                app:srcCompat="@android:drawable/btn_star_big_on" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

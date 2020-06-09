@@ -64,4 +64,9 @@ class OverviewViewModel: ViewModel() {
         _navigateDetail.value = null
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        viewModelJob.cancel()
+    }
+
 }

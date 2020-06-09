@@ -7,5 +7,18 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="posterImgStyle">
+        <item name="layout_constraintDimensionRatio">h,2:3</item>
+    </style>
+
+    <style name="detailTextTitle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="detailTextBody" parent="detailTextTitle">
+        <item name="android:lineSpacingExtra">4sp</item>
+    </style>
 
 </resources>

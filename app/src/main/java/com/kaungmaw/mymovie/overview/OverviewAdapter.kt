@@ -38,8 +38,6 @@ class OverviewAdapter(private val onClickListener: OnClickListener): ListAdapter
     class OverviewViewHolder(private val binding: MovieItemGridBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: Movie?) {
             binding.movieForGrid = item
-            binding.tvVote.text = item?.voteAverage.toString()
-            binding.executePendingBindings()
         }
 
     }

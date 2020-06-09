@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.kaungmaw.mymovie.R
 import com.kaungmaw.mymovie.databinding.FragmentMovieOverviewBinding
 import com.kaungmaw.mymovie.network.MovieFilter
@@ -28,6 +29,11 @@ class MovieOverviewFragment : Fragment() {
         binding.rvMovie.adapter = OverviewAdapter(OverviewAdapter.OnClickListener {
             viewModel.doNavigationDetail(it)
         })
+
+        var gridColumnCount = resources.getInteger(R.integer.grid_column_count)
+        val layoutManager = GridLayoutManager(this.context,gridColumnCount)
+        binding.rvMovie.layoutManager = layoutManager
+
 
         viewModel.navigateDetail.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -65,5 +71,4 @@ class MovieOverviewFragment : Fragment() {
         )
         return true
     }
-
 }

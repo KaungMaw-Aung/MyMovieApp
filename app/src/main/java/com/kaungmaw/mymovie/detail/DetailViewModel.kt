@@ -45,4 +45,9 @@ class DetailViewModel(val app: Application , val movieId: Long): ViewModel() {
     val detailResponse: LiveData<MovieDetailProperty>
         get() = _detailResponse
 
+    override fun onCleared() {
+        super.onCleared()
+        job.cancel()
+    }
+
 }
